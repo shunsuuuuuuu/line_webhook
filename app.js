@@ -38,7 +38,11 @@ app.post('/webhook', verifySignature, async (req, res) => {
         return res.status(400).end();
     }
 
+    
     for (const event of events) {
+        if (event.type !== 'message' || event.message.type !== 'text') {
+            continue;
+        }
         console.log(`Event type: ${event.type}`);
         console.log(`Message: ${event.message.text}`);
         dateString = "";
@@ -72,7 +76,7 @@ app.post('/webhook', verifySignature, async (req, res) => {
             });
         }
         else {
-            console.log('日付を含まないメッセージ');
+            console.log('日付を含まないメッセージを検知');
         }
 
     }
