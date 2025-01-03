@@ -41,8 +41,6 @@ app.post('/webhook', verifySignature, async (req, res) => {
     for (const event of events) {
         console.log(`Event type: ${event.type}`);
         console.log(`Message: ${event.message.text}`);
-        // メッセージにX月Y日というフォーマットがあれば、その日付を出力する
-
         dateString = "";
 
         if (event.message.text.match(/[0-9]{1,2}月[0-9]{1,2}日/)) {
@@ -57,7 +55,7 @@ app.post('/webhook', verifySignature, async (req, res) => {
                 const month = monthMatch[1];
                 const day = dayMatch[1];
                 dateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-                console.log(`${dateString} + にスケジュールが入りました。`);
+                console.log(`日付を含むメッセージを検知： ${dateString}`);
             }
 
             const replyToken = event.replyToken;
