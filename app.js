@@ -71,6 +71,9 @@ app.post('/webhook', verifySignature, async (req, res) => {
                 }
             });
         }
+        else {
+            console.log('日付を含まないメッセージ');
+        }
 
     }
 
