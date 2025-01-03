@@ -1,10 +1,12 @@
-# line_webhook
+# LINE_webhook
 LINEのトーク内容を解析するためのプログラムです。
 
 ## 環境構築
+```
 npm init -y
 npm install express body-parser @line/bot-sdk
 sudo npm install -g ngrok
+```
 
 ## 設定
 ### LINE Developers の登録
@@ -17,8 +19,12 @@ sudo npm install -g ngrok
 コピーして、.envファイルに貼り付けてください。
 
 ### Webhook URLを設定
-上記で作成したサーバーをインターネット上で公開（例: ngrokを利用）。
-Webhook URLには、ngrokが生成したURLを設定します。
+[ngrok](https://dashboard.ngrok.com)を利用して、サーバーをインターネット上で公開します。  
+アカウントを登録し、ログインします。 「Your Authtoken」 タブを開き、Authtokenをコピーします。以下のコマンドでトークンを登録します。
+```
+ngrok config add-authtoken <your_authtoken>
+```
+続いて、以下のコマンドでngrokを起動します。
 ```
 ngrok http 3000
 ```
